@@ -84,50 +84,6 @@ app.post("/send-enquiry", async (req, res) => {
   }
 });
 
-// Contact Form
-app.post("/send-contact", async (req, res) => {
-
-  const {
-    name,
-    company,
-    phone,
-    message
-  } = req.body;
-
-  try {
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "New Contact Form Enquiry 📩",
-
-      html: `
-        <h2>New Contact Form Submission</h2>
-
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Company:</b> ${company}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Message:</b> ${message}</p>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    res.status(200).json({
-      success: true,
-    });
-
-  } catch (error) {
-
-    console.log(error);
-
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
-  }
-});
-
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
 });
