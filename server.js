@@ -42,6 +42,12 @@ transporter.verify((err) => {
   else console.log("SMTP READY ✅");
 });
 
+
+/* ROOT API */
+app.get("/", (req, res) => {
+  res.send("🚀 P2P Consulting Backend is Running Successfully");
+});
+
 /* =========================
    ENQUIRY API
 ========================= */
@@ -83,8 +89,10 @@ app.post("/send-enquiry", async (req, res) => {
 /* =========================
    START SERVER
 ========================= */
-app.listen(5000, () => {
-  console.log("🚀 Server running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 
